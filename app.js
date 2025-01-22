@@ -18,7 +18,8 @@ const adminRoutes = require('./routes/admin');
 server.use(indexRoutes); 
 server.use(adminRoutes); 
 
-const port = 3002;
+const port = process.env.PORT || 3002;
+
 server.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
