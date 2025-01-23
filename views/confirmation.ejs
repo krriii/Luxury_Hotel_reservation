@@ -5,9 +5,14 @@
         <h1 class="text-3xl font-semibold text-center text-blue-600">Reservation Confirmation</h1>
 
         <% if (reservation) { %>
-            <p class="text-lg mt-4 text-center">Thank you for your reservation, <span class="font-bold text-blue-600"><%= reservation.name %></span>!</p>
+            <p class="text-lg mt-4 text-center">
+                Thank you for your reservation, 
+                <span class="font-bold text-blue-600 block"><%= reservation.name %></span>!
+            </p>
+            
+            <!-- <p class="text-lg mt-4 text-center">Thank you for your reservation <span class="font-bold text-blue-600"><%= reservation.name %></span>!</p> -->
 
-            <p class="mt-6 text-lg">Your reservation details are as follows:</p>
+            <p class="mt-6 text-lg">Your reservation details are as follows::</p>
             <ul class="list-disc pl-5 mt-4">
                 <li><strong class="text-blue-600">Email:</strong> <%= reservation.email %></li>
                 <li><strong class="text-blue-600">Check-In Date:</strong> <%= reservation.checkInDate %></li>
@@ -39,3 +44,9 @@
         </div>
     </main>
 <%- include('includes/end.ejs') %>
+
+
+
+
+
+
