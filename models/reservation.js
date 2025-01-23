@@ -1,22 +1,36 @@
+class Reservation {
+    // Private reservations array
+    static #reservations = [];
 
-let reservations = []; 
-module.exports = class Reservation {
-    constructor(name, email, roomType, checkInDate, checkOutDate, totalPrice) {
+    constructor(name, email, roomType, checkInDate, checkOutDate,totalPrice) {
         this.name = name;
         this.email = email;
         this.roomType = roomType;
-        this.checkInDate = checkInDate;
-        this.checkOutDate = checkOutDate;
+        this.checkInDate = new Date(checkInDate);
+        this.checkOutDate = new Date(checkOutDate);
         this.totalPrice = totalPrice;
     }
 
-    
-    save() {
-        reservations.push(this);
+    // Getter for reservations
+    static get reservations() {
+        return Reservation.#reservations;
     }
 
-    static fetchAll() {
-        console.log(reservations);
-        return reservations;
+    // Method to save a reservation
+    save() {
+        Reservation.#reservations.push(this);
     }
-};
+
+  
+
+    // Static method to fetch all reservations
+    static fetchAll() {
+        return Reservation.#reservations;
+    }
+
+ 
+   
+}
+
+// Export the model
+module.exports = Reservation;
