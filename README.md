@@ -16,16 +16,19 @@ Setup Instructions:
    git clone https://github.com/krriii/Luxury_Hotel_reservation
    cd hotel-reservation-system
 
-2. Install dependencies:
-   npm install mysql2 bcryptjs express-session connect-session-sequelize 
-   npm install nodemon 
-   npm install express ejs
-   npm install body-parser
-
+2. Install package - npm install
 
 3. Set up the MySQL database:
    - Create a new MySQL database
-   - Update the database configuration in config/database.js
+   - Update the database configuration in utils/database.js
+   - change your database table name and password in this section utils/database.js
+   - const db = {
+       host: 'localhost',
+       user: 'root',
+       database: 'yourdatabasename',
+       password: 'yourpassword',
+       dialect: 'mysql',
+};
 
 4. Start the server:
    npm start
