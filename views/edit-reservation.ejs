@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Reservation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1624003974266-7cdbf877ec00?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+    <div class="w-full bg-opacity-75 bg-gray-800 p-8 rounded-lg shadow-lg max-w-xl">
+        <h1 class="text-4xl font-semibold text-center text-white mb-6">Edit Reservation</h1>
+        <form class="space-y-6" method="POST" action="/reservation/<%= reservation.id %>/update">
+            <div class="space-y-2">
+                <label for="name" class="block text-sm font-medium text-white">Name</label>
+                <input type="text" name="name" id="name" value="<%= reservation.name %>" required 
+                    class="w-full p-3 bg-gray-500 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            </div>
+            <div class="space-y-2">
+                <label for="email" class="block text-sm font-medium text-white">Email</label>
+                <input type="email" name="email" id="email" value="<%= reservation.email %>" required 
+                    class="w-full p-3 bg-gray-500 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            </div>
+            <div class="space-y-2">
+                <label for="roomType" class="block text-sm font-medium text-white">Room Type</label>
+                <select name="roomType" id="roomType" required 
+                    class="w-full p-3 bg-gray-600 text-white border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <option value="single" <%= reservation.roomType === 'single' ? 'selected' : '' %>>Single</option>
+                    <option value="double" <%= reservation.roomType === 'double' ? 'selected' : '' %>>Double</option>
+                    <option value="suite" <%= reservation.roomType === 'suite' ? 'selected' : '' %>>Suite</option>
+                </select>
+            </div>
+            <div class="space-y-2">
+                <label for="checkInDate" class="block text-sm font-medium text-white">Check-in Date</label>
+                <input type="date" name="checkInDate" id="checkInDate" 
+                    value="<%= reservation.checkInDate.toISOString().split('T')[0] %>" required 
+                    class="w-full p-3 bg-gray-500 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            </div>
+            <div class="space-y-2">
+                <label for="checkOutDate" class="block text-sm font-medium text-white">Check-out Date</label>
+                <input type="date" name="checkOutDate" id="checkOutDate" 
+                    value="<%= reservation.checkOutDate.toISOString().split('T')[0] %>" required 
+                    class="w-full p-3 bg-gray-500 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            </div>
+            <div class="flex justify-between space-x-4">
+                <button type="submit" 
+                    class="w-1/2 bg-blue-500 text-white py-3 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 transition">
+                    Update Reservation
+                </button>
+                <a href="/confirmation" 
+                    class="w-1/2 bg-gray-500 text-white py-3 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 transition text-center">
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function validateDates() {
+            const checkInDate = document.getElementById("checkInDate").value;
+            const checkOutDate = document.getElementById("checkOutDate").value;
+    
+            if (checkOutDate && checkInDate && new Date(checkOutDate) < new Date(checkInDate)) {
+                alert("Check-out date cannot be before check-in date.");
+                return false;
+            }
+            return true;
+        }
+    
+        document.querySelector("form").addEventListener("submit", function(event) {
+            if (!validateDates()) {
+                event.preventDefault();  
+            }
+        });
+    </script>
+</body>
+</html>

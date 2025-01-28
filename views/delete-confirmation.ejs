@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Reservation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1624003974266-7cdbf877ec00?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+    <div class="w-full bg-opacity-75 bg-gray-800 p-8 rounded-lg shadow-lg max-w-xl">
+        <h1 class="text-4xl font-semibold text-center text-white mb-6">Delete Reservation</h1>
+        <div class="space-y-4 text-white">
+            <p class="text-lg">Are you sure you want to delete this reservation?</p>
+            <p><strong>Name:</strong> <%= reservation.name %></p>
+            <p><strong>Email:</strong> <%= reservation.email %></p>
+            <p><strong>Room Type:</strong> <%= reservation.roomType %></p>
+            <p><strong>Check-in Date:</strong> <%= reservation.checkInDate.toDateString() %></p>
+            <p><strong>Check-out Date:</strong> <%= reservation.checkOutDate.toDateString() %></p>
+        </div>
+        <div class="mt-8 flex justify-between">
+            <form action="/reservation/<%= reservation.id %>/delete" method="POST">
+                <button type="submit" class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 transition">
+                    Confirm Delete
+                </button>
+            </form>
+            <a href="/confirmation" class="bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 transition">
+                Cancel
+            </a>
+        </div>
+    </div>
+</body>
+</html>

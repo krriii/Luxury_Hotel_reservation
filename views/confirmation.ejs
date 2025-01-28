@@ -9,10 +9,7 @@
                 <span class="font-bold text-blue-600 "><%= reservation.name %></span>!
             </p>
             
-            <!-- <p class="text-lg mt-4 text-center">Thank you for your reservation
-                 <span class="font-bold text-blue-600"><%= reservation.name %></span>!</p> -->
-
-            <p class="mt-6 text-lg">Your reservation details are as follows::</p>
+            <p class="mt-6 text-lg">Your reservation details are as follows:</p>
             <ul class="list-disc pl-5 mt-4">
                 <li><strong class="text-blue-600">Email:</strong> <%= reservation.email %></li>
                 <li><strong class="text-blue-600">Check-In Date:</strong> <%= reservation.checkInDate %></li>
@@ -20,6 +17,14 @@
                 <li><strong class="text-blue-600">Room Type:</strong> <%= reservation.roomType %></li>
                 <li><strong class="text-blue-600">Price:</strong> <%= reservation.totalPrice %></li>
             </ul>
+            <div class="mt-4 flex justify-center space-x-4">
+                <a href="/reservation/<%= reservation.id %>/edit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Edit Reservation
+                </a>
+                <a href="/reservation/<%= reservation.id %>/delete" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                    Delete Reservation
+                </a>
+            </div>
             <p class="mt-6 text-lg text-center">We look forward to hosting you!</p>
         <% } else { %>
             <p class="text-center text-lg">No reservation found.</p>
@@ -29,9 +34,13 @@
         <% if (allReservations.length > 0) { %>
             <ul class="list-disc pl-5 mt-4">
                 <% allReservations.forEach(res => { %>
-                    <li>
+                    <li class="mb-4">
                         <strong><%= res.name %></strong> - <%= res.roomType %> 
-                        (Check-in: <%= res.checkInDate %>, Check-out: <%= res.checkOutDate %>,Price: <%= res.totalPrice %>)
+                        (Check-in: <%= res.checkInDate %>, Check-out: <%= res.checkOutDate %>, Price: <%= res.totalPrice %>)
+                        <div class="mt-2">
+                            <a href="/reservation/<%= res.id %>/edit" class="text-blue-500 hover:text-blue-700 mr-2">Edit</a>
+                            <a href="/reservation/<%= res.id %>/delete" class="text-red-500 hover:text-red-700">Delete</a>
+                        </div>
                     </li>
                 <% }) %>
             </ul>
@@ -44,9 +53,3 @@
         </div>
     </main>
 <%- include('includes/end.ejs') %>
-
-
-
-
-
-
